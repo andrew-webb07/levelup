@@ -1,0 +1,26 @@
+[
+    {
+        "model": "levelupapi.game",
+        "pk": 1,
+        "fields": {
+            "name": "Sorry",
+            "game_type": 1,
+            "description": "annoying board game",
+            "number_of_players": 4,
+            "gamer": 1,
+            "maker": "W.H. Storey & Co"
+        }
+    },
+    {
+        "model": "levelupapi.game",
+        "pk": 2,
+        "fields": {
+            "name": "Risk",
+            "game_type": 1,
+            "description": "the game of world domination",
+            "number_of_players": 6,
+            "gamer": 1,
+            "maker": "Albert Lamorisse"
+        }
+    }
+]

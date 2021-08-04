@@ -1,0 +1,28 @@
+[
+    {
+        "model": "levelupapi.event",
+        "pk": 1,
+        "fields": {
+            "host": 1,
+            "game": 1,
+            "date": "2021-07-31",
+            "time": "7:00 PM",
+            "description": "We're playing sorry",
+            "title": "Sorry Night",
+            "attendees": [1]
+        }
+    },
+    {
+        "model": "levelupapi.event",
+        "pk": 2,
+        "fields": {
+            "host": 1,
+            "game": 2,
+            "date": "2021-07-25",
+            "time": "7:00 PM",
+            "description": "Playing Risk for 5 days",
+            "title": "Time for World Domination",
+            "attendees": [1]
+        }
+    }
+]
