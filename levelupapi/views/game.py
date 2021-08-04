@@ -30,6 +30,7 @@ class GameView(ViewSet):
         game.maker = request.data["maker"]
         game.number_of_players = request.data["numberOfPlayers"]
         game.gamer = gamer
+        game.description = request.data["description"]
 
         # Use the Django ORM to get the record from the database
         # whose `id` is what the client passed as the
@@ -87,6 +88,7 @@ class GameView(ViewSet):
         game.maker = request.data["maker"]
         game.number_of_players = request.data["numberOfPlayers"]
         game.gamer = gamer
+        game.description = request.data["description"]
 
         game_type = GameType.objects.get(pk=request.data["gameTypeId"])
         game.game_type = game_type
@@ -143,5 +145,5 @@ class GameSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Game
-        fields = ('id', 'name', 'maker', 'number_of_players', 'game_type')
+        fields = ('id', 'name', 'description', 'maker', 'number_of_players', 'game_type')
         depth = 1
