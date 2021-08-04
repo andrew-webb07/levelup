@@ -45,4 +45,4 @@ class GameTypeSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = GameType
-        fields = ('id', 'label')
+        fields = ('id', 'label') # Could also do '__all__' instead of ('id', 'label') because you're getting all
