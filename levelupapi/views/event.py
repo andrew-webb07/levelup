@@ -1,4 +1,5 @@
 """View module for handling requests about events"""
+
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseServerError
@@ -24,15 +25,18 @@ class EventView(ViewSet):
 
         event = Event()
         event.time = request.data["time"]
+        event.title = request.data["title"]
         event.date = request.data["date"]
         event.description = request.data["description"]
         event.host = gamer
+        
 
         game = Game.objects.get(pk=request.data["gameId"])
         event.game = game
 
         try:
             event.save()
+            event.attendees.set(request.data["attendees"])
             serializer = EventSerializer(event, context={'request': request})
             return Response(serializer.data)
         except ValidationError as ex:
@@ -48,7 +52,7 @@ class EventView(ViewSet):
             event = Event.objects.get(pk=pk)
             serializer = EventSerializer(event, context={'request': request})
             return Response(serializer.data)
-        except Exception:
+        except Exception as ex:
             return HttpResponseServerError(ex)
 
     def update(self, request, pk=None):

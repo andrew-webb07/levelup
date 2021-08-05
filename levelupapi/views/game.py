@@ -94,6 +94,9 @@ class GameView(ViewSet):
         game.game_type = game_type
         game.save()
 
+        # serializer = GameSerializer(game, context={'request': request})
+        # return Response(serializer.data)
+
         # 204 status code means everything worked but the
         # server is not sending back any data in the response
         return Response({}, status=status.HTTP_204_NO_CONTENT)
