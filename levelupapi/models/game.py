@@ -11,3 +11,11 @@ class Game(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def event_count(self):
+        return self.__event_count
+
+    @event_count.setter
+    def event_count(self, value):
+        self.__event_count = value
