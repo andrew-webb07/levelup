@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseServerError
 from rest_framework import status
+from django.db.models import Q
+from django.db.models import Count
 from rest_framework.decorators import action
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -138,12 +140,21 @@ class EventView(ViewSet):
             Response -- JSON serialized list of events
         """
         gamer = Gamer.objects.get(user=request.auth.user)
-        events = Event.objects.all()
+        # events = Event.objects.all()
+        events = Event.objects.annotate(
+            attendees_count=Count('attendees'),
+            joined=Count(
+                'attendees',
+                 filter=Q(attendees=gamer)
+            )
+        )
+
 
         # Set the `joined` property on every event
         for event in events:
             # Check to see if the gamer is in the attendees list on the event
-            event.joined = gamer in event.attendees.all()
+            # event.joined = gamer in event.attendees.all()
+            event.joined = bool(event.joined)
 
         # Support filtering events by game
         game = self.request.query_params.get('gameId', None)

@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from django.db.models import Count
+from django.db.models import Q
 from levelupapi.models import Game, GameType, Gamer
 
 
@@ -129,7 +130,13 @@ class GameView(ViewSet):
         """
         # Get all game records from the database
         # games = Game.objects.all()
-        games = Game.objects.annotate(event_count=Count('events'))
+        gamer = Gamer.objects.get(user=request.auth.user)
+        games = Game.objects.annotate(event_count=Count('events'),
+            user_event_count=Count(
+                'events',
+                filter=Q(events__host=gamer)
+            )
+        )
 
         # Support filtering games by type
         #    http://localhost:8000/games?type=1
@@ -151,5 +158,5 @@ class GameSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Game
-        fields = ('id', 'name', 'description', 'maker', 'number_of_players', 'gamer','game_type', 'event_count')
+        fields = ('id', 'name', 'description', 'maker', 'number_of_players', 'gamer','game_type', 'event_count', 'user_event_count')
         depth = 1
