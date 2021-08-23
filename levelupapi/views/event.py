@@ -71,8 +71,8 @@ class EventView(ViewSet):
         event.host = gamer
         
 
-        game = Game.objects.get(pk=request.data["gameId"])
-        event.game = game
+        event.game = Game.objects.get(pk=request.data["gameId"])
+
 
         try:
             event.save()
@@ -112,6 +112,7 @@ class EventView(ViewSet):
         game = Game.objects.get(pk=request.data["gameId"])
         event.game = game
         event.save()
+        event.attendees.set(request.data["attendees"])
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
@@ -195,3 +196,4 @@ class EventSerializer(serializers.ModelSerializer):
         fields = ('id', 'game', 'host', 'title',
           'description', 'date', 'time', 'attendees',
           'joined')
+        depth = 3
