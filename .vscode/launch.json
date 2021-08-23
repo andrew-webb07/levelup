@@ -12,7 +12,10 @@
             "args": [
                 "runserver"
             ],
-            "django": true
+            "django": true,
+            "autoReload":{
+                "enable": true
+            }
         }
     ]
 }
