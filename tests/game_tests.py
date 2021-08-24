@@ -22,7 +22,7 @@ class GameTests(APITestCase):
         }
         # Initiate request and capture response
         response = self.client.post(url, data, format='json')
-
+        
         # Parse the JSON in the response body
         json_response = json.loads(response.content)
 
@@ -72,7 +72,6 @@ class GameTests(APITestCase):
         self.assertEqual(json_response["maker"], "Milton Bradley")
         self.assertEqual(json_response["number_of_players"], 6)
         
-
     def test_get_game(self):
         """
         Ensure we can get an existing game.
