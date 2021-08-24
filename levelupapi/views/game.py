@@ -152,6 +152,7 @@ class GameView(ViewSet):
         serializer = GameSerializer(
             games, many=True, context={'request': request})
         return Response(serializer.data)
+        
 
 class GameSerializer(serializers.ModelSerializer):
     """JSON serializer for games

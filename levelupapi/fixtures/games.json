@@ -6,8 +6,8 @@
             "name": "Sorry",
             "game_type": 1,
             "description": "annoying board game",
-            "number_of_players": 4,
-            "gamer": 1,
+            "number_of_players": 6,
+            "gamer": 2,
             "maker": "W.H. Storey & Co"
         }
     },

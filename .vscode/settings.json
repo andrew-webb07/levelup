@@ -5,6 +5,7 @@
         "--load-plugins=pylint_django",
         "--django-settings-module=levelup.settings"
     ],
+    "python.envFile": "${workspaceFolder}/.env",
     "sqltools.connections": [
         {
             "previewLimit": 50,
