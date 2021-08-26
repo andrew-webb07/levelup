@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.deletion import CASCADE
+# from django.db.models.deletion import CASCADE
 
 class Event(models.Model):
     host = models.ForeignKey("Gamer", on_delete=models.CASCADE, related_name='events')

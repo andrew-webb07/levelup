@@ -5,14 +5,17 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
-from rest_framework import status
 from django.db.models import Count
 from django.db.models import Q
 from levelupapi.models import Game, GameType, Gamer
-
+from rest_framework.permissions import DjangoModelPermissions
+from levelupapi.permissions import IsOwnerOrReadOnly
 
 class GameView(ViewSet):
     """Level up games"""
+    permission_classes = [ DjangoModelPermissions, IsOwnerOrReadOnly]
+    queryset = Game.objects.none()
+
 
     def create(self, request):
         """Handle POST operations

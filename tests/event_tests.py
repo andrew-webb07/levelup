@@ -1,8 +1,9 @@
 import json
 from rest_framework import status
 from rest_framework.test import APITestCase
-from levelupapi.models import Event, Game, Gamer, GameType
 from django.contrib.auth.models import User
+from levelupapi.models import Event, Game, Gamer, GameType
+
 
 
 class EventTests(APITestCase):
