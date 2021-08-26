@@ -11,11 +11,14 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from levelupapi.models import Game, Event, Gamer
-# from levelupapi.views.game import GameSerializer
+from rest_framework.permissions import DjangoModelPermissions
+from levelupapi.permissions import IsOwnerOrReadOnly
 
 
 class EventView(ViewSet):
     """Level up events"""
+    permission_classes = [ DjangoModelPermissions, IsOwnerOrReadOnly]
+    queryset = Event.objects.none()
 
     @action(methods=['post', 'delete'], detail=True)
     def signup(self, request, pk=None):

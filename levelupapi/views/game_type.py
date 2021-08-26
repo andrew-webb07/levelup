@@ -1,11 +1,10 @@
 """View module for handling requests about game types"""
-from levelupapi.models.game import Game
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import serializers
-from levelupapi.models import GameType, game_type
+from levelupapi.models import GameType
 from django.core.exceptions import ValidationError
 
 
