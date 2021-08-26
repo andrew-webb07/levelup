@@ -4,15 +4,7 @@
         "pk": 1,
         "fields": {
             "user": 1,
-            "bio": "Me"
-        }
-    },
-    {
-        "model": "levelupapi.gamer",
-        "pk": 2,
-        "fields": {
-            "user": 2,
-            "bio": "Oh...I game"
+            "bio": "I like games"
         }
     }
 ]
