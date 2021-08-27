@@ -13,6 +13,7 @@ from rest_framework import serializers
 from levelupapi.models import Game, Event, Gamer
 from rest_framework.permissions import DjangoModelPermissions
 from levelupapi.permissions import IsOwnerOrReadOnly
+from rest_framework.permissions import IsAuthenticated
 
 
 class EventView(ViewSet):
@@ -20,7 +21,7 @@ class EventView(ViewSet):
     permission_classes = [ DjangoModelPermissions, IsOwnerOrReadOnly]
     queryset = Event.objects.none()
 
-    @action(methods=['post', 'delete'], detail=True)
+    @action(methods=['post', 'delete'], detail=True, permission_classes=[IsAuthenticated])
     def signup(self, request, pk=None):
         """Managing gamers signing up for events"""
         # Django uses the `Authorization` header to determine
